@@ -18,18 +18,24 @@ export function Profile({selection} : {selection : string}){
       }}></div>
       <div className="profile-name">{person.Name}</div>
     </div>
-    <div>
-      <div className="about">{person.Bio}</div>
+
+    <div className="personInformation">
+      <div className="personInfo">
+        <div className="infoGroup">
+          <div className="about">{person.Bio}</div>
+        </div>
+        <div className="infoGroup">
+          <div className="stats-country">Hometown : {person['Hometown Text']}</div>
+          <div className="stats-country">Country : {person.Country}</div>
+        </div>
+        <div className="infoGroup">
+          <div className="stats-age">Flight Count: {person['Total Flights']}</div>
+          <div className="stats-age">Flights : {person.Flights}</div>
+          <div className="stats-age">Flight Time : {person['Total Flight Time (ddd:hh:mm)']}</div>
+        </div>
+      </div>
     </div>
-    <div>
-      <div className="stats-country">Hometown : {person['Hometown Text']}</div>
-      <div className="stats-country">Country : {person.Country}</div>
-    </div>
-    <div>
-      <div className="stats-age">Flight Count: {person['Total Flights']}</div>
-      <div className="stats-age">Flights : {person.Flights}</div>
-      <div className="stats-age">Flight Time : {person['Total Flight Time (ddd:hh:mm)']}</div>
-    </div>
+    <div className="titleCard">AstroQuery</div>
   </div>
   );
 }

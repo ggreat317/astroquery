@@ -59,11 +59,11 @@ export function Main({selection, search, newSelection} : {selection: string, sea
       const [days, hours, minutes] = a["Total Flight Time (ddd:hh:mm)"].split(':').map(Number);
       const totalMinutes = days * .24 * + hours * .01;
       return{
-        lat: a.Latitude,
-        lng: a.Longitude,
-        size: .5,
-        color:"blue",
-        name: a.Name
+         lat: a.Latitude,
+         lng: a.Longitude,
+         size: a.Name === selection ? 1.0 : 0.5,      // bigger for selected
+         color: a.Name === selection ? "#00ff00" : "blue", // bright green
+         name: a.Name
       }
     })
 
@@ -71,6 +71,7 @@ export function Main({selection, search, newSelection} : {selection: string, sea
       .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
       .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png') 
       .pointsData(dataPoints)
+      
       .onPointClick((point,event,coords) => {
         const pointer = point as PointData;
         newSelection(pointer.name)
@@ -108,10 +109,9 @@ export function Main({selection, search, newSelection} : {selection: string, sea
     });
   }, [filteredAstronauts, astronauts]);;
 
-  return <div ref={globeRef} style={{
-        width: "80%",
-        border: "2px solid black",
-        overflow: "hidden",
-      }}/>;
+  return (
+  <div  className="globe">
+    <div ref={globeRef}/>
+  </div>);
 }
 
